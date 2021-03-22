@@ -1,13 +1,10 @@
-##from aiogram import Bot, types
-##from aiogram.dispatcher import Dispatcher
-##from aiogram.utils import executor
 import random
 import telebot
 import unicodedata
 
 a=open(r'Города.txt', encoding='utf8')
 b=a.readlines()
-bot = telebot.TeleBot('1227384653:AAFRyNHZjH7iO5Qm6E3gLVVbcdtvcWy-r4o')
+bot = telebot.TeleBot('') #ВСТАВИТЬ СЮДА ТОКЕН БОТА
 #dp = Dispatcher(bot)
 city=set()
 cityb=set()
