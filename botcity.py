@@ -5,7 +5,7 @@ import unicodedata
 a=open(r'Города.txt', encoding='utf8')
 b=a.readlines()
 bot = telebot.TeleBot('') #ВСТАВИТЬ СЮДА ТОКЕН БОТА
-#dp = Dispatcher(bot)
+
 city=set()
 cityb=set()
 g=0
@@ -21,8 +21,6 @@ ost=[] #Буквы, города на которые закончились
 def prov(globalcitym,ostm):                                #ПРОВЕРКА
         for u in globalcitym:
                 ostm.add(u[0])
-        #print('ostm: ',ostm)
-        #print(globalcitym)
         return set(ostm)
 
 @bot.message_handler(commands=['start'])
@@ -48,7 +46,7 @@ def start_message(message):                                    # СТАРТ
         globalcityb[sl.index(message.chat.id)]=set()
         ost[sl.index(message.chat.id)]=set()
         
-        
+      
         for j in b:
             i=j
             i=i.strip()
@@ -153,18 +151,11 @@ def begin(message):
                 globalcity[sl.index(message.chat.id)].remove(n[sl.index(message.chat.id)])
                 prevost=ost[sl.index(message.chat.id)]
                 ost[sl.index(message.chat.id)]=prov(globalcity[sl.index(message.chat.id)],ost[sl.index(message.chat.id)]) #Проверка 1
-                #print(ost[sl.index(message.chat.id)],prevost)
-                #if list(prevost)!=list(ost[sl.index(message.chat.id)]):
-                                        
-                        #bot.send_message(message.chat.id,("Внимание!"))#\nВ базе бота закончились города, начинающиеся с буквы "+str(list(prevost.difference(ost))[0])+".\nИспользуйте букву, стоящую перед ней"))
-                                        
-                
-                
-                
+
                 for k in globalcity[sl.index(message.chat.id)]:
                         i=k
                         l=len(n[sl.index(message.chat.id)])
-                        if n[sl.index(message.chat.id)][l-1] not in ost[sl.index(message.chat.id)]:   #k - город от бота СДЕЛАТЬ ТАК ЧТОБЫ КОГДА БУКВЫ КОНЧАЛИСЬ ОН ПРЕДУПРЕЖДАЛ ОБ ЭТОМ И ГОВОРИЛ БУКВЫ ПЕРЕД НЕЙ
+                        if n[sl.index(message.chat.id)][l-1] not in ost[sl.index(message.chat.id)]:   #k - город от бота 
                                                                                               #n - от человека
                                 while n[sl.index(message.chat.id)][l-1] not in ost[sl.index(message.chat.id)]:
                                         l-=1
@@ -178,19 +169,13 @@ def begin(message):
                                                 z-=1
                                         d[sl.index(message.chat.id)]=k[z]
                                 
-                                bot.send_message(message.chat.id,(str(ii)+ "\n\nВам на букву "+str(d[sl.index(message.chat.id)].upper()))) #Крч не пишет то что после запятой
+                                bot.send_message(message.chat.id,(str(ii)+ "\n\nВам на букву "+str(d[sl.index(message.chat.id)].upper()))) 
                                 
                                         
                                 globalcityb[sl.index(message.chat.id)].add(i)
                                 
                                 globalcity[sl.index(message.chat.id)].remove(i)
-                                
-                               # prevost=ost[sl.index(message.chat.id)]
-                               # ost[sl.index(message.chat.id)]=prov(globalcity[sl.index(message.chat.id)],ost[sl.index(message.chat.id)]) #Проверка 2
-                                #if prevost!=ost[sl.index(message.chat.id)]:
-                                        
-                                       # bot.send_message(message.chat.id,("Внимание!"))#\nВ базе бота закончились города, начинающиеся с буквы "+str(list(prevost.difference(ost))[0])+".\nИспользуйте букву, стоящую перед ней"))
-                               # print(ost[sl.index(message.chat.id)],prevost)
+                              
                                 break
                 
 
